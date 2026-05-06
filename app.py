@@ -1,5 +1,3 @@
-# Regional Thali Identifier - Gradio App
-
 import torch
 import timm
 import json
@@ -197,6 +195,7 @@ if 'df' not in st.session_state:
     st.session_state.current_bundle = None
     st.session_state.current_device = None
     st.session_state.current_model_type = None
+    st.session_state.results = None
 
 def get_available_models():
     return [m for m in MODEL_REGISTRY if m["available"]()]
@@ -204,150 +203,163 @@ def get_available_models():
 def load_selected_model(model_type):
     bundle, device = get_model(model_type)
     if bundle is None:
-        return None, "❌ Model weights not found. Please train models first."
+        return False
     st.session_state.current_bundle = bundle
     st.session_state.current_device = device
     st.session_state.current_model_type = model_type
-    model_info = next(m for m in MODEL_REGISTRY if m["type"] == model_type)
-    return f"✅ Loaded: {model_info['label']} ({model_info['detail']})"
+    return True
 
 def classify_image(image, model_type):
     if image is None:
-        return None, "Please upload an image first.", ""
-    
+        return None
+
     # Load model if needed
     if st.session_state.current_model_type != model_type or st.session_state.current_bundle is None:
-        load_msg = load_selected_model(model_type)
-        if "❌" in load_msg:
-            return None, load_msg, ""
-    
-    # Predict
-    results = predict(image, st.session_state.current_bundle, st.session_state.current_device, 
-                     st.session_state.idx_to_class, st.session_state.dish_to_region, 
-                     st.session_state.nutrition, st.session_state.df)
-    
-    # Format output
-    top = results[0]
-    
-    # Main prediction
-    main_output = f"""
-    ## 🍛 {top['name']}
-    
-    **Region:** {REGION_EMOJI.get(top['region'], '🍽️')} {top['region']} India · {top['state']}
-    
-    **Confidence:** {top['confidence'] * 100:.1f}%
-    
-    ### 📊 Nutrition
-    **Calories:** ~{top['calories']} kcal per {top['serving_size']}
-    
-    ### 🥗 Diet & Course
-    **Diet:** {top['diet'].title()}  
-    **Course:** {top['course'].title()}  
-    **Flavor:** {top['flavor'].title()}
-    
-    ### ⏱️ Time
-    **Prep:** {top['prep_time']}m · **Cook:** {top['cook_time']}m
-    
-    ### 🚨 Allergens
-    """
-    
-    allergens = top.get('allergens', {})
-    allergen_info = []
-    if allergens.get('nuts', False):
-        allergen_info.append("🥜 **Nuts:** Contains")
-    else:
-        allergen_info.append("🥜 **Nuts:** Free")
-    
-    if allergens.get('dairy', False):
-        allergen_info.append("🥛 **Dairy:** Contains")
-    else:
-        allergen_info.append("🥛 **Dairy:** Free")
-    
-    if allergens.get('gluten', False):
-        allergen_info.append("🌾 **Gluten:** Contains")
-    else:
-        allergen_info.append("🌾 **Gluten:** Free")
-    
-    main_output += "\n".join(allergen_info)
-    
-    # Alternative predictions
-    if len(results) > 1:
-        main_output += "\n\n### 🔮 Alternative Predictions\n"
-        for rank, r in enumerate(results[1:], 2):
-            main_output += f"**#{rank}** {r['name']} ({r['region']}) - {r['confidence'] * 100:.1f}%\n"
-    
-    # Ingredients
-    ingredients_output = f"### 📝 Ingredients\n\n{top['ingredients']}"
-    
-    return image, main_output, ingredients_output
+        ok = load_selected_model(model_type)
+        if not ok:
+            return None
 
-# Streamlit interface
+    # Predict
+    results = predict(image, st.session_state.current_bundle, st.session_state.current_device,
+                     st.session_state.idx_to_class, st.session_state.dish_to_region,
+                     st.session_state.nutrition, st.session_state.df)
+    return results
+
+
+# ─── Streamlit App ──────────────────────────────────────────────────────────
+
 def main():
     st.set_page_config(
         page_title="Regional Thali Identifier",
         page_icon="🍛",
-        layout="wide"
+        layout="wide",
     )
-    
-    st.markdown("""
-    # 🍛 Regional Thali Identifier
-    Upload an Indian food photo &mdash; instantly uncover the dish, origin, nutrition, and allergens.
-    """)
-    
+
+    # ── Header ──
+    st.title("🍛 Regional Thali Identifier")
+    st.caption("Upload a photo of an Indian dish — get the name, region, nutrition, and allergen info.")
+
+    # ── Sidebar: model picker + stats ──
     available_models = get_available_models()
     if not available_models:
         st.error("No models available. Please train models first.")
         st.stop()
-    
-    model_choices = [f"{m['rank']}. {m['label']}" for m in available_models]
-    model_type_map = {f"{m['rank']}. {m['label']}": m['type'] for m in available_models}
-    
-    # Sidebar for model selection and info
+
+    model_choices = {f"{m['label']}  ({m['detail']})": m['type'] for m in available_models}
+
     with st.sidebar:
-        st.header("Model Selection")
-        selected_model = st.selectbox(
-            "Select Model",
-            options=model_choices,
+        st.header("Model")
+        selected_label = st.radio(
+            "Choose a model",
+            options=list(model_choices.keys()),
             index=0,
-            help="Choose the AI model for prediction"
         )
-        
-        st.header("Model Performance")
+        selected_type = model_choices[selected_label]
+
+        st.divider()
+        st.subheader("Accuracy Reference")
         for m in available_models:
-            st.markdown(f"**{m['label']}**")
-            st.caption(f"Top-1: {m['dish_acc']}% | Top-3: {m['top3_acc']}% | Region: {m['region_acc']}%")
-    
-    # Main content area
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        st.header("Upload")
-        uploaded_image = st.file_uploader(
-            "Upload Food Photo",
-            type=["jpg", "jpeg", "png"],
-            label_visibility="collapsed"
+            with st.container():
+                st.markdown(f"**{m['label']}**")
+                c1, c2, c3 = st.columns(3)
+                c1.metric("Top-1", f"{m['dish_acc']}%")
+                c2.metric("Top-3", f"{m['top3_acc']}%")
+                c3.metric("Region", f"{m['region_acc']}%")
+
+    # ── Main area ──
+    upload_col, result_col = st.columns([1, 2], gap="large")
+
+    with upload_col:
+        st.subheader("Upload")
+        uploaded_file = st.file_uploader(
+            "Drop an image here",
+            type=["jpg", "jpeg", "png", "webp"],
+            label_visibility="collapsed",
         )
-        
-        analyze_btn = st.button("🔍 Analyze", type="primary", use_container_width=True)
-    
-    with col2:
-        st.header("Results")
-        
-        if uploaded_image is not None:
-            image = Image.open(uploaded_image)
-            st.image(image, caption="Uploaded Image", use_column_width=True)
-        
-        if analyze_btn and uploaded_image is not None:
-            with st.spinner("Analyzing image..."):
-                _, prediction_output, ingredients_output = classify_image(
-                    image, 
-                    model_type_map[selected_model]
-                )
-                
-                st.markdown(prediction_output)
-                st.markdown(ingredients_output)
-        elif analyze_btn:
-            st.warning("Please upload an image first.")
+
+        if uploaded_file is not None:
+            image = Image.open(uploaded_file)
+            st.image(image, use_container_width=True)
+            analyze_btn = st.button("Analyze", type="primary", use_container_width=True)
+        else:
+            image = None
+            analyze_btn = False
+            st.info("Upload a food photo to get started.")
+
+    # ── Run inference ──
+    if analyze_btn and image is not None:
+        with st.spinner("Running model..."):
+            st.session_state.results = classify_image(image, selected_type)
+
+    # ── Display results ──
+    with result_col:
+        results = st.session_state.get("results")
+        if results is None:
+            st.subheader("Results")
+            st.write("Results will appear here after analysis.")
+            return
+
+        if not results:
+            st.error("Model weights not found. Train models first or check your internet connection for auto-download.")
+            return
+
+        top = results[0]
+
+        # ── Dish name + confidence ──
+        st.subheader(top["name"])
+        st.progress(top["confidence"], text=f"Confidence: {top['confidence'] * 100:.1f}%")
+
+        # ── Region & Origin ──
+        region_emoji = REGION_EMOJI.get(top["region"], "")
+        st.markdown(f"**Region:** {region_emoji} {top['region']} India &nbsp;·&nbsp; **State:** {top['state']}")
+
+        st.divider()
+
+        # ── Key metrics row ──
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Calories", f"~{top['calories']} kcal")
+        m2.metric("Diet", top["diet"].title())
+        m3.metric("Course", top["course"].title())
+        m4.metric("Flavor", top["flavor"].title() if top["flavor"] and top["flavor"] != "-1" else "—")
+
+        # ── Prep / Cook time ──
+        t1, t2 = st.columns(2)
+        prep = top["prep_time"]
+        cook = top["cook_time"]
+        t1.metric("Prep Time", f"{prep} min" if prep and prep != "-1" else "—")
+        t2.metric("Cook Time", f"{cook} min" if cook and cook != "-1" else "—")
+
+        st.divider()
+
+        # ── Allergens ──
+        st.markdown("**Allergens**")
+        a1, a2, a3 = st.columns(3)
+        allergens = top.get("allergens", {})
+        for col, name in zip([a1, a2, a3], ["nuts", "dairy", "gluten"]):
+            present = allergens.get(name, False)
+            if present:
+                col.error(f"{name.title()}: Contains")
+            else:
+                col.success(f"{name.title()}: Free")
+
+        # ── Ingredients ──
+        with st.expander("Ingredients", expanded=False):
+            st.write(top["ingredients"])
+
+        # ── Serving size ──
+        st.caption(f"Serving size: {top.get('serving_size', '1 serving')}")
+
+        # ── Alternative predictions ──
+        if len(results) > 1:
+            st.divider()
+            st.markdown("**Other Predictions**")
+            for rank, r in enumerate(results[1:], 2):
+                alt_col1, alt_col2, alt_col3 = st.columns([3, 2, 1])
+                alt_col1.write(f"#{rank} {r['name']}")
+                alt_col2.write(f"{r['region']} India")
+                alt_col3.write(f"{r['confidence'] * 100:.1f}%")
+
 
 if __name__ == "__main__":
     main()
+
