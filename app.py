@@ -215,13 +215,13 @@ def classify_image(image, model_type):
     global current_bundle, current_device, current_model_type
     
     if image is None:
-        return None, "Please upload an image first."
+        return None, "Please upload an image first.", ""
     
     # Load model if needed
     if current_model_type != model_type or current_bundle is None:
         load_msg = load_selected_model(model_type)
         if "❌" in load_msg:
-            return None, load_msg
+            return None, load_msg, ""
     
     # Predict
     results = predict(image, current_bundle, current_device, idx_to_class, dish_to_region, nutrition, df)
