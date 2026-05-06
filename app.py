@@ -327,8 +327,7 @@ def ensure_model(filename):
     return local_path
 
 
-# Cached model loaders
-@st.cache_resource
+# Model loaders
 def _load_clip():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     p = ensure_model("clip_linear_probe.pkl")
@@ -343,7 +342,6 @@ def _load_clip():
     return {"type": "clip", "clf": clf, "clip_model": clip_model, "clip_prep": clip_prep}, device
 
 
-@st.cache_resource
 def _load_vit():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     p = ensure_model("vit_b16_best.pth")
@@ -355,7 +353,6 @@ def _load_vit():
     return {"type": "vit", "model": model.to(device).eval()}, device
 
 
-@st.cache_resource
 def _load_efficientnet():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     for ckpt in ["efficientnet_b0_best.pth", "efficientnet_b0_head_only.pth"]:
