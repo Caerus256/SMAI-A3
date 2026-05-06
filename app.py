@@ -237,7 +237,7 @@ def main():
 
     # ── Header ──
     st.title("🍛 Regional Thali Identifier")
-    st.caption("Upload a photo of an Indian dish — get the name, region, nutrition, and allergen info.")
+    st.markdown("Upload a photo of an Indian dish — get the name, region, nutrition, and allergen info.")
 
     # ── Sidebar: model picker + stats ──
     available_models = get_available_models()
@@ -245,57 +245,66 @@ def main():
         st.error("No models available. Please train models first.")
         st.stop()
 
-    model_choices = {f"{m['label']}  ({m['detail']})": m['type'] for m in available_models}
+    model_choices = {m['label']: m['type'] for m in available_models}
 
     with st.sidebar:
-        st.header("Model")
+        st.header("⚙️ Model Settings")
         selected_label = st.radio(
-            "Choose a model",
+            "Choose a model for inference",
             options=list(model_choices.keys()),
             index=0,
         )
         selected_type = model_choices[selected_label]
+        
+        # Show detail caption for the selected model
+        selected_info = next(m for m in available_models if m['type'] == selected_type)
+        st.caption(f"**Architecture:** {selected_info['detail']}")
 
         st.divider()
-        st.subheader("Accuracy Reference")
-        for m in available_models:
-            with st.container():
-                st.markdown(f"**{m['label']}**")
-                c1, c2, c3 = st.columns(3)
-                c1.metric("Top-1", f"{m['dish_acc']}%")
-                c2.metric("Top-3", f"{m['top3_acc']}%")
-                c3.metric("Region", f"{m['region_acc']}%")
+        
+        st.subheader("📊 Accuracy Reference")
+        # Clean dataframe presentation of metrics to prevent truncation
+        acc_df = pd.DataFrame([
+            {
+                "Model": m["label"], 
+                "Top-1": f"{m['dish_acc']}%", 
+                "Top-3": f"{m['top3_acc']}%", 
+                "Region": f"{m['region_acc']}%"
+            }
+            for m in available_models
+        ])
+        st.dataframe(acc_df, hide_index=True, use_container_width=True)
 
     # ── Main area ──
     upload_col, result_col = st.columns([1, 2], gap="large")
 
     with upload_col:
-        st.subheader("Upload")
+        st.subheader("📤 Upload Image")
         uploaded_file = st.file_uploader(
-            "Drop an image here",
+            "Drop a food image here",
             type=["jpg", "jpeg", "png", "webp"],
             label_visibility="collapsed",
         )
 
         if uploaded_file is not None:
             image = Image.open(uploaded_file)
-            st.image(image, use_container_width=True)
-            analyze_btn = st.button("Analyze", type="primary", use_container_width=True)
+            st.image(image, use_container_width=True, style="border-radius: 10px;")
+            analyze_btn = st.button("✨ Analyze Dish", type="primary", use_container_width=True)
         else:
             image = None
             analyze_btn = False
-            st.info("Upload a food photo to get started.")
+            st.info("Upload a photo of an Indian dish to get started.")
 
     # ── Run inference ──
     if analyze_btn and image is not None:
-        with st.spinner("Running model..."):
+        with st.spinner("Analyzing image features..."):
             st.session_state.results = classify_image(image, selected_type)
 
     # ── Display results ──
     with result_col:
         results = st.session_state.get("results")
         if results is None:
-            st.subheader("Results")
+            st.subheader("🔍 Results")
             st.write("Results will appear here after analysis.")
             return
 
@@ -306,59 +315,71 @@ def main():
         top = results[0]
 
         # ── Dish name + confidence ──
-        st.subheader(top["name"])
-        st.progress(top["confidence"], text=f"Confidence: {top['confidence'] * 100:.1f}%")
-
+        st.header(f"{top['name']}")
+        
         # ── Region & Origin ──
-        region_emoji = REGION_EMOJI.get(top["region"], "")
-        st.markdown(f"**Region:** {region_emoji} {top['region']} India &nbsp;·&nbsp; **State:** {top['state']}")
+        region_emoji = REGION_EMOJI.get(top["region"], "📍")
+        st.markdown(f"**Origin:** {region_emoji} {top['region']} India &nbsp;·&nbsp; **State:** {top['state']}")
+        
+        st.progress(top["confidence"], text=f"Confidence: {top['confidence'] * 100:.1f}%")
 
         st.divider()
 
         # ── Key metrics row ──
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Calories", f"~{top['calories']} kcal")
-        m2.metric("Diet", top["diet"].title())
-        m3.metric("Course", top["course"].title())
-        m4.metric("Flavor", top["flavor"].title() if top["flavor"] and top["flavor"] != "-1" else "—")
-
-        # ── Prep / Cook time ──
-        t1, t2 = st.columns(2)
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Calories", f"~{top['calories']} kcal", help=f"Per {top.get('serving_size', 'serving')}")
+        
         prep = top["prep_time"]
         cook = top["cook_time"]
-        t1.metric("Prep Time", f"{prep} min" if prep and prep != "-1" else "—")
-        t2.metric("Cook Time", f"{cook} min" if cook and cook != "-1" else "—")
+        m2.metric("Prep Time", f"{prep} min" if prep and prep != "-1" else "—")
+        m3.metric("Cook Time", f"{cook} min" if cook and cook != "-1" else "—")
+
+        # ── Characteristics ──
+        flavor = top["flavor"].title() if top["flavor"] and top["flavor"] != "-1" else "—"
+        st.markdown(
+            f"**Diet:** {top['diet'].title()} &nbsp;&nbsp;|&nbsp;&nbsp; "
+            f"**Course:** {top['course'].title()} &nbsp;&nbsp;|&nbsp;&nbsp; "
+            f"**Flavor:** {flavor}"
+        )
 
         st.divider()
 
         # ── Allergens ──
-        st.markdown("**Allergens**")
+        st.markdown("#### 🚨 Allergens")
         a1, a2, a3 = st.columns(3)
         allergens = top.get("allergens", {})
-        for col, name in zip([a1, a2, a3], ["nuts", "dairy", "gluten"]):
-            present = allergens.get(name, False)
-            if present:
-                col.error(f"{name.title()}: Contains")
-            else:
-                col.success(f"{name.title()}: Free")
+        
+        if allergens.get("nuts", False):
+            a1.error("🥜 Nuts: Contains")
+        else:
+            a1.success("🥜 Nuts: Free")
+            
+        if allergens.get("dairy", False):
+            a2.error("🥛 Dairy: Contains")
+        else:
+            a2.success("🥛 Dairy: Free")
+            
+        if allergens.get("gluten", False):
+            a3.error("🌾 Gluten: Contains")
+        else:
+            a3.success("🌾 Gluten: Free")
+
+        st.write("") # Small spacer
 
         # ── Ingredients ──
-        with st.expander("Ingredients", expanded=False):
+        with st.expander("📝 View Ingredients", expanded=False):
             st.write(top["ingredients"])
-
-        # ── Serving size ──
-        st.caption(f"Serving size: {top.get('serving_size', '1 serving')}")
+            st.caption(f"Serving size: {top.get('serving_size', '1 serving')}")
 
         # ── Alternative predictions ──
         if len(results) > 1:
             st.divider()
-            st.markdown("**Other Predictions**")
+            st.markdown("#### 🔮 Alternative Predictions")
             for rank, r in enumerate(results[1:], 2):
                 alt_col1, alt_col2, alt_col3 = st.columns([3, 2, 1])
-                alt_col1.write(f"#{rank} {r['name']}")
-                alt_col2.write(f"{r['region']} India")
+                alt_col1.write(f"**#{rank}** {r['name']}")
+                alt_col2.write(f"{REGION_EMOJI.get(r['region'], '📍')} {r['region']} India")
                 alt_col3.write(f"{r['confidence'] * 100:.1f}%")
-
 
 if __name__ == "__main__":
     main()
