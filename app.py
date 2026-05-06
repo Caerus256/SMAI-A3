@@ -322,7 +322,8 @@ def ensure_model(filename):
             )
             st.toast(f"Downloaded {filename}", icon="✅")
         except Exception as e:
-            st.error(f"Failed to download {filename}: {e}")
+            st.error(f"Failed to download {filename} from Hugging Face: {str(e)}")
+            st.info("Models are not available. Please run training.ipynb locally to generate model files.")
             return None
     return local_path
 

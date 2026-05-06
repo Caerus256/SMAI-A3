@@ -1,0 +1,15 @@
+Model,Training,Dish Top-1,Dish Top-3,Dish F1,Region Acc,Region F1
+Simple CNN,"From scratch, 10 ep",0.0917,0.2317,0.0525,0.3400,0.2799
+CLIP ViT-B/32,Zero-shot,0.4533,0.5817,0.4162,0.6050,0.4889
+CLIP ViT-B/32,Linear probe (sklearn),0.7483,0.8967,0.7353,0.8400,0.7921
+EfficientNet-B0,"Head-only, 5 ep",0.3650,0.5617,0.3422,0.5933,0.4981
+EfficientNet-B0,"Last-block, 1 ep",0.1883,0.3767,0.1702,0.5050,0.3815
+EfficientNet-B0,"Last-block, 5 ep",0.4717,0.6900,0.4580,0.6717,0.5821
+EfficientNet-B0,"Last-block, 10 ep",0.5050,0.6933,0.4900,0.6983,0.6038
+EfficientNet-B3 (NEW),"Progressive unfreeze, 7 ep",0.4983,0.7033,0.4854,0.7000,0.6320
+EfficientNet-B3 + TTA (NEW),Progressive unfreeze + TTA,0.5383,0.7533,0.5270,0.7150,0.6440
+Ensemble CLIP+B3 (NEW),CLIP (0.8) + B3 (0.2),0.7033,0.8817,0.6891,0.8400,0.7999
+ViT-B/16,"Head-only, 5 ep",0.6017,0.7767,0.5844,0.7733,0.7178
+ViT-B/16,"Head-only, 10 ep",0.6400,0.7983,0.6290,0.8017,0.7661
+ViT-B/16,"Last-2-blk, 5 ep",0.6933,0.8517,0.6741,0.8167,0.7827
+ViT-B/16,"Last-2-blk, 10 ep",0.7133,0.8600,0.7056,0.8500,0.8226
