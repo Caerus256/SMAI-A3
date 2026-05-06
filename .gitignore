@@ -2,12 +2,11 @@
 data/
 datasets/
 images/
+Indian Food Images/
+indian_food.csv
 
-# Ignore model weights
-*.pt
-*.pth
-*.h5
-*.pkl
+# Ignore all model files (LFS budget exceeded)
+model/
 
 # Ignore virtual environments
 venv/

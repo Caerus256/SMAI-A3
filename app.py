@@ -24,7 +24,7 @@ except ImportError:
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR    = PROJECT_DIR / "data"
 MODEL_DIR   = PROJECT_DIR / "model"
-IMG_DIR     = Path(os.environ.get("IMG_DIR", str(PROJECT_DIR.parent / "Indian Food Images")))
+IMG_DIR     = Path(os.environ.get("IMG_DIR", str(PROJECT_DIR / "Indian Food Images")))
 HF_REPO_ID  = "Caerus256/SMAI-A3"
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]

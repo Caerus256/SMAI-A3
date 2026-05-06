@@ -5,7 +5,7 @@ import re
 import random
 
 # Paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(__file__)
 CSV_PATH = os.path.join(BASE_DIR, "indian_food.csv")
 if not os.path.exists(CSV_PATH):
     CSV_PATH = os.path.join(BASE_DIR, "..", "indian_food.csv")
