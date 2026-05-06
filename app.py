@@ -10,7 +10,7 @@ import pandas as pd
 from PIL import Image
 from pathlib import Path
 from torchvision import transforms
-import gradio as gr
+import streamlit as st
 from huggingface_hub import hf_hub_download
 
 try:
@@ -191,40 +191,40 @@ def predict(image, bundle, device, idx_to_class, dish_to_region, nutrition, df, 
                 for p, i in zip(top_p, top_i)]
 
 
-# Global state
-df, nutrition, idx_to_class, dish_to_region = load_metadata()
-current_bundle = None
-current_device = None
-current_model_type = None
+# Initialize session state
+if 'df' not in st.session_state:
+    st.session_state.df, st.session_state.nutrition, st.session_state.idx_to_class, st.session_state.dish_to_region = load_metadata()
+    st.session_state.current_bundle = None
+    st.session_state.current_device = None
+    st.session_state.current_model_type = None
 
 def get_available_models():
     return [m for m in MODEL_REGISTRY if m["available"]()]
 
 def load_selected_model(model_type):
-    global current_bundle, current_device, current_model_type
     bundle, device = get_model(model_type)
     if bundle is None:
         return None, "❌ Model weights not found. Please train models first."
-    current_bundle = bundle
-    current_device = device
-    current_model_type = model_type
+    st.session_state.current_bundle = bundle
+    st.session_state.current_device = device
+    st.session_state.current_model_type = model_type
     model_info = next(m for m in MODEL_REGISTRY if m["type"] == model_type)
     return f"✅ Loaded: {model_info['label']} ({model_info['detail']})"
 
 def classify_image(image, model_type):
-    global current_bundle, current_device, current_model_type
-    
     if image is None:
         return None, "Please upload an image first.", ""
     
     # Load model if needed
-    if current_model_type != model_type or current_bundle is None:
+    if st.session_state.current_model_type != model_type or st.session_state.current_bundle is None:
         load_msg = load_selected_model(model_type)
         if "❌" in load_msg:
             return None, load_msg, ""
     
     # Predict
-    results = predict(image, current_bundle, current_device, idx_to_class, dish_to_region, nutrition, df)
+    results = predict(image, st.session_state.current_bundle, st.session_state.current_device, 
+                     st.session_state.idx_to_class, st.session_state.dish_to_region, 
+                     st.session_state.nutrition, st.session_state.df)
     
     # Format output
     top = results[0]
@@ -281,60 +281,73 @@ def classify_image(image, model_type):
     
     return image, main_output, ingredients_output
 
-# Create Gradio interface
-def create_interface():
+# Streamlit interface
+def main():
+    st.set_page_config(
+        page_title="Regional Thali Identifier",
+        page_icon="🍛",
+        layout="wide"
+    )
+    
+    st.markdown("""
+    # 🍛 Regional Thali Identifier
+    Upload an Indian food photo &mdash; instantly uncover the dish, origin, nutrition, and allergens.
+    """)
+    
     available_models = get_available_models()
     if not available_models:
-        raise ValueError("No models available. Please train models first.")
+        st.error("No models available. Please train models first.")
+        st.stop()
     
     model_choices = [f"{m['rank']}. {m['label']}" for m in available_models]
     model_type_map = {f"{m['rank']}. {m['label']}": m['type'] for m in available_models}
     
-    with gr.Blocks(title="Regional Thali Identifier", theme=gr.themes.Soft()) as demo:
-        gr.Markdown("""
-        # 🍛 Regional Thali Identifier
-        Upload an Indian food photo &mdash; instantly uncover the dish, origin, nutrition, and allergens.
-        """)
-        
-        with gr.Row():
-            with gr.Column(scale=1):
-                image_input = gr.Image(type="pil", label="Upload Food Photo")
-                model_dropdown = gr.Dropdown(
-                    choices=model_choices,
-                    value=model_choices[0],
-                    label="Select Model",
-                    info="Choose the AI model for prediction"
-                )
-                classify_btn = gr.Button("🔍 Analyze", variant="primary", size="lg")
-                
-                gr.Markdown("### Model Performance")
-                for m in available_models:
-                    gr.Markdown(f"**{m['label']}** - Top-1: {m['dish_acc']}%, Top-3: {m['top3_acc']}%, Region: {m['region_acc']}%")
-            
-            with gr.Column(scale=2):
-                output_image = gr.Image(label="Uploaded Image")
-                prediction_output = gr.Markdown(label="Prediction Results")
-                ingredients_output = gr.Markdown(label="Ingredients")
-        
-        classify_btn.click(
-            fn=lambda img, model: classify_image(img, model_type_map[model]),
-            inputs=[image_input, model_dropdown],
-            outputs=[output_image, prediction_output, ingredients_output]
+    # Sidebar for model selection and info
+    with st.sidebar:
+        st.header("Model Selection")
+        selected_model = st.selectbox(
+            "Select Model",
+            options=model_choices,
+            index=0,
+            help="Choose the AI model for prediction"
         )
         
-        # Examples
-        gr.Examples(
-            examples=[
-                [str(IMG_DIR / "biryani" / os.listdir(IMG_DIR / "biryani")[0]) if (IMG_DIR / "biryani").exists() else None],
-                [str(IMG_DIR / "butter_chicken" / os.listdir(IMG_DIR / "butter_chicken")[0]) if (IMG_DIR / "butter_chicken").exists() else None],
-                [str(IMG_DIR / "jalebi" / os.listdir(IMG_DIR / "jalebi")[0]) if (IMG_DIR / "jalebi").exists() else None],
-            ],
-            inputs=image_input,
-            label="Sample Images"
-        )
+        st.header("Model Performance")
+        for m in available_models:
+            st.markdown(f"**{m['label']}**")
+            st.caption(f"Top-1: {m['dish_acc']}% | Top-3: {m['top3_acc']}% | Region: {m['region_acc']}%")
     
-    return demo
+    # Main content area
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.header("Upload")
+        uploaded_image = st.file_uploader(
+            "Upload Food Photo",
+            type=["jpg", "jpeg", "png"],
+            label_visibility="collapsed"
+        )
+        
+        analyze_btn = st.button("🔍 Analyze", type="primary", use_container_width=True)
+    
+    with col2:
+        st.header("Results")
+        
+        if uploaded_image is not None:
+            image = Image.open(uploaded_image)
+            st.image(image, caption="Uploaded Image", use_column_width=True)
+        
+        if analyze_btn and uploaded_image is not None:
+            with st.spinner("Analyzing image..."):
+                _, prediction_output, ingredients_output = classify_image(
+                    image, 
+                    model_type_map[selected_model]
+                )
+                
+                st.markdown(prediction_output)
+                st.markdown(ingredients_output)
+        elif analyze_btn:
+            st.warning("Please upload an image first.")
 
 if __name__ == "__main__":
-    demo = create_interface()
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    main()
