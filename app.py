@@ -11,6 +11,7 @@ import pandas as pd
 from PIL import Image
 from pathlib import Path
 from torchvision import transforms
+from huggingface_hub import hf_hub_download
 
 try:
     import open_clip
@@ -23,6 +24,7 @@ PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR    = PROJECT_DIR / "data"
 MODEL_DIR   = PROJECT_DIR / "model"
 IMG_DIR     = Path(os.environ.get("IMG_DIR", str(PROJECT_DIR.parent / "Indian Food Images")))
+HF_REPO_ID  = "Caerus256/SMAI-A3"
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD  = [0.229, 0.224, 0.225]
@@ -46,24 +48,21 @@ MODEL_REGISTRY = [
         "label": "CLIP Linear Probe",
         "detail": "ViT-B/32 + Logistic Regression",
         "dish_acc": 74.8, "top3_acc": 89.7, "region_acc": 84.0,
-        "available": lambda: _OPEN_CLIP_AVAILABLE and (MODEL_DIR / "clip_linear_probe.pkl").exists(),
+        "available": lambda: _OPEN_CLIP_AVAILABLE,
     },
     {
         "type": "vit",   "rank": 2,
         "label": "ViT-B/16 Fine-tuned",
         "detail": "Last-2-blocks, 10 epochs",
         "dish_acc": 69.5, "top3_acc": 85.8, "region_acc": 82.2,
-        "available": lambda: (MODEL_DIR / "vit_b16_best.pth").exists(),
+        "available": lambda: True,
     },
     {
         "type": "efficientnet", "rank": 3,
         "label": "EfficientNet-B0",
         "detail": "Last-block, 10 epochs",
         "dish_acc": 49.0, "top3_acc": 70.3, "region_acc": 69.3,
-        "available": lambda: any(
-            (MODEL_DIR / f).exists()
-            for f in ["efficientnet_b0_best.pth", "efficientnet_b0_head_only.pth"]
-        ),
+        "available": lambda: True,
     },
 ]
 
@@ -75,6 +74,22 @@ VAL_TRANSFORM = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
 ])
+
+# Download model from Hugging Face if not present
+def ensure_model(filename):
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    local_path = MODEL_DIR / filename
+    if not local_path.exists():
+        try:
+            downloaded_path = hf_hub_download(
+                repo_id=HF_REPO_ID,
+                filename=filename,
+                repo_type="model",
+                local_dir=MODEL_DIR
+            )
+        except Exception as e:
+            return None
+    return local_path
 
 # -- Page config ---------------------------------------------------------------
 st.set_page_config(
@@ -304,7 +319,10 @@ st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 @st.cache_resource
 def _load_clip():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    with open(MODEL_DIR / "clip_linear_probe.pkl", "rb") as fh:
+    p = ensure_model("clip_linear_probe.pkl")
+    if p is None:
+        return None, device
+    with open(p, "rb") as fh:
         clf = pickle.load(fh)
     clip_model, _, clip_prep = open_clip.create_model_and_transforms(
         "ViT-B-32", pretrained="laion2b_s34b_b79k"
@@ -316,8 +334,11 @@ def _load_clip():
 @st.cache_resource
 def _load_vit():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    p = ensure_model("vit_b16_best.pth")
+    if p is None:
+        return None, device
     model = timm.create_model("vit_base_patch16_224", pretrained=False, num_classes=NUM_CLASSES)
-    sd = torch.load(str(MODEL_DIR / "vit_b16_best.pth"), map_location=device, weights_only=True)
+    sd = torch.load(str(p), map_location=device, weights_only=True)
     model.load_state_dict(sd)
     return {"type": "vit", "model": model.to(device).eval()}, device
 
@@ -326,8 +347,8 @@ def _load_vit():
 def _load_efficientnet():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     for ckpt in ["efficientnet_b0_best.pth", "efficientnet_b0_head_only.pth"]:
-        p = MODEL_DIR / ckpt
-        if p.exists():
+        p = ensure_model(ckpt)
+        if p and p.exists():
             model = timm.create_model("efficientnet_b0", pretrained=False, num_classes=NUM_CLASSES)
             sd = torch.load(str(p), map_location=device, weights_only=True)
             model.load_state_dict(sd)
