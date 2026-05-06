@@ -1,0 +1,1442 @@
+{
+  "boondi": {
+    "display_name": "Boondi",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 363,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Rajasthan",
+    "flavor_profile": "sweet",
+    "ingredients": "Gram flour, ghee, sugar",
+    "prep_time_min": "80",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "gajar_ka_halwa": {
+    "display_name": "Gajar ka halwa",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 397,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "sweet",
+    "ingredients": "Carrots, milk, sugar, ghee, cashews, raisins",
+    "prep_time_min": "15",
+    "cook_time_min": "60",
+    "serving_size": "1 bowl (150 g)"
+  },
+  "ghevar": {
+    "display_name": "Ghevar",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 389,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Rajasthan",
+    "flavor_profile": "sweet",
+    "ingredients": "Flour, ghee, kewra, milk, clarified butter, sugar, almonds, pistachio, saffron, green cardamom",
+    "prep_time_min": "15",
+    "cook_time_min": "30",
+    "serving_size": "1 piece (100 g)"
+  },
+  "gulab_jamun": {
+    "display_name": "Gulab jamun",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 417,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk powder, plain flour, baking powder, ghee, milk, sugar, water, rose water",
+    "prep_time_min": "15",
+    "cook_time_min": "40",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "imarti": {
+    "display_name": "Imarti",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 347,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Sugar syrup, lentil flour",
+    "prep_time_min": "10",
+    "cook_time_min": "50",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "jalebi": {
+    "display_name": "Jalebi",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 314,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Maida, corn flour, baking soda, vinegar, curd, water, turmeric, saffron, cardamom",
+    "prep_time_min": "10",
+    "cook_time_min": "50",
+    "serving_size": "3 pieces (90 g)"
+  },
+  "kalakand": {
+    "display_name": "Kalakand",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 339,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk, cottage cheese, sugar",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "lassi": {
+    "display_name": "Lassi",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 332,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "sweet",
+    "ingredients": "Yogurt, milk, nuts, sugar",
+    "prep_time_min": "5",
+    "cook_time_min": "5",
+    "serving_size": "1 glass (250 ml)"
+  },
+  "phirni": {
+    "display_name": "Phirni",
+    "allergens": {
+      "nuts": true,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 367,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "Odisha",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice, sugar, nuts",
+    "prep_time_min": "30",
+    "cook_time_min": "20",
+    "serving_size": "1 bowl (150 g)"
+  },
+  "rabri": {
+    "display_name": "Rabri",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 338,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Condensed milk, sugar, spices, nuts",
+    "prep_time_min": "10",
+    "cook_time_min": "45",
+    "serving_size": "1 serving (100 g)"
+  },
+  "sheera": {
+    "display_name": "Sheera",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 351,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Semolina, ghee, nuts, milk",
+    "prep_time_min": "10",
+    "cook_time_min": "25",
+    "serving_size": "1 serving (100 g)"
+  },
+  "sohan_halwa": {
+    "display_name": "Sohan halwa",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 338,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Corn flour, ghee, dry fruits",
+    "prep_time_min": "10",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "sohan_papdi": {
+    "display_name": "Sohan papdi",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 390,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Gram flour, ghee, sugar, milk, cardamom",
+    "prep_time_min": "-1",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "chhena_kheeri": {
+    "display_name": "Chhena kheeri",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 348,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "Odisha",
+    "flavor_profile": "sweet",
+    "ingredients": "Chhena, sugar, milk",
+    "prep_time_min": "-1",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "cham_cham": {
+    "display_name": "Cham cham",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 376,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Flour, cream, sugar, saffron, lemon juice, coconut flakes",
+    "prep_time_min": "40",
+    "cook_time_min": "60",
+    "serving_size": "2 pieces (100 g)"
+  },
+  "ledikeni": {
+    "display_name": "Ledikeni",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 387,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Chhena, sugar, ghee",
+    "prep_time_min": "45",
+    "cook_time_min": "45",
+    "serving_size": "1 serving (100 g)"
+  },
+  "lyangcha": {
+    "display_name": "Lyangcha",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 420,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North East",
+    "state": "Assam",
+    "flavor_profile": "sweet",
+    "ingredients": "Flour, fried milk power, sugar syrup",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "malapua": {
+    "display_name": "Malapua",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 385,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North",
+    "state": "Bihar",
+    "flavor_profile": "sweet",
+    "ingredients": "Yoghurt, refined flour, ghee, fennel seeds",
+    "prep_time_min": "10",
+    "cook_time_min": "120",
+    "serving_size": "1 serving (100 g)"
+  },
+  "misti_doi": {
+    "display_name": "Misti doi",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 320,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk, jaggery",
+    "prep_time_min": "480",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "pithe": {
+    "display_name": "Pithe",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 335,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North East",
+    "state": "Assam",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, wheat flour",
+    "prep_time_min": "15",
+    "cook_time_min": "35",
+    "serving_size": "1 serving (100 g)"
+  },
+  "ras_malai": {
+    "display_name": "Ras malai",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 321,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Chhena, reduced milk, pistachio",
+    "prep_time_min": "180",
+    "cook_time_min": "60",
+    "serving_size": "2 pieces (120 g)"
+  },
+  "rasgulla": {
+    "display_name": "Rasgulla",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 343,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Chhena, sugar, cardamom",
+    "prep_time_min": "10",
+    "cook_time_min": "90",
+    "serving_size": "2 pieces (100 g)"
+  },
+  "sandesh": {
+    "display_name": "Sandesh",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 349,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk, sugar, saffron, cardamom",
+    "prep_time_min": "30",
+    "cook_time_min": "20",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "adhirasam": {
+    "display_name": "Adhirasam",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 439,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, jaggery, ghee, vegetable oil, elachi",
+    "prep_time_min": "10",
+    "cook_time_min": "50",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "ariselu": {
+    "display_name": "Ariselu",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 406,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, jaggery, ghee",
+    "prep_time_min": "15",
+    "cook_time_min": "75",
+    "serving_size": "1 serving (100 g)"
+  },
+  "bandar_laddu": {
+    "display_name": "Bandar laddu",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 378,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Besan, jaggery, cardamom powder, ghee, cashews and raisins, jaggery syrup, sugar",
+    "prep_time_min": "5",
+    "cook_time_min": "35",
+    "serving_size": "1 serving (100 g)"
+  },
+  "chikki": {
+    "display_name": "Chikki",
+    "allergens": {
+      "nuts": true,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 339,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Peanuts, jaggery",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "2 pieces (60 g)"
+  },
+  "dharwad_pedha": {
+    "display_name": "Dharwad pedha",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 321,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Karnataka",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk, Sugar, Dharwadi buffalo milk",
+    "prep_time_min": "20",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "double_ka_meetha": {
+    "display_name": "Double ka meetha",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 304,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Telangana",
+    "flavor_profile": "sweet",
+    "ingredients": "Loaf bread, milk",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "gavvalu": {
+    "display_name": "Gavvalu",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 408,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, sugar, salt, ghee, semolina",
+    "prep_time_min": "10",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "kakinada_khaja": {
+    "display_name": "Kakinada khaja",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 320,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Wheat flour, sugar",
+    "prep_time_min": "10",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (100 g)"
+  },
+  "kuzhi_paniyaram": {
+    "display_name": "Kuzhi paniyaram",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 349,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Kerala",
+    "flavor_profile": "sweet",
+    "ingredients": "Black lentils, rice",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (100 g)"
+  },
+  "mysore_pak": {
+    "display_name": "Mysore pak",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 405,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Karnataka",
+    "flavor_profile": "sweet",
+    "ingredients": "Besan flour, semolina, mung bean, jaggery, coconut, skimmed milk powder, sugar, ghee",
+    "prep_time_min": "5",
+    "cook_time_min": "20",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "poornalu": {
+    "display_name": "Poornalu",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 356,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Chana dal, jaggery",
+    "prep_time_min": "240",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "pootharekulu": {
+    "display_name": "Pootharekulu",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 415,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, powdered sugar, ghee",
+    "prep_time_min": "10",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "qubani_ka_meetha": {
+    "display_name": "Qubani ka meetha",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 357,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Telangana",
+    "flavor_profile": "sweet",
+    "ingredients": "Apricots, sugar syrup",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (100 g)"
+  },
+  "sheer_korma": {
+    "display_name": "Sheer korma",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 310,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Telangana",
+    "flavor_profile": "sweet",
+    "ingredients": "Vermicelli pudding, milk",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "1 bowl (150 g)"
+  },
+  "unni_appam": {
+    "display_name": "Unni Appam",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 389,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Tamil Nadu",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, banana, jaggery, coconut",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (100 g)"
+  },
+  "kajjikaya": {
+    "display_name": "Kajjikaya",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 399,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "South",
+    "state": "Andhra Pradesh",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, jaggery, coconut",
+    "prep_time_min": "40",
+    "cook_time_min": "15",
+    "serving_size": "1 serving (100 g)"
+  },
+  "anarsa": {
+    "display_name": "Anarsa",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 364,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, jaggery, khus-khus seeds",
+    "prep_time_min": "10",
+    "cook_time_min": "50",
+    "serving_size": "1 serving (100 g)"
+  },
+  "basundi": {
+    "display_name": "Basundi",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 340,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Gujarat",
+    "flavor_profile": "sweet",
+    "ingredients": "Sugar, milk, nuts",
+    "prep_time_min": "10",
+    "cook_time_min": "35",
+    "serving_size": "1 bowl (150 g)"
+  },
+  "doodhpak": {
+    "display_name": "Doodhpak",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 353,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Gujarat",
+    "flavor_profile": "sweet",
+    "ingredients": "Milk, rice, sugar, dry fruits",
+    "prep_time_min": "10",
+    "cook_time_min": "60",
+    "serving_size": "1 serving (100 g)"
+  },
+  "modak": {
+    "display_name": "Modak",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 363,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice flour, coconut, jaggery",
+    "prep_time_min": "10",
+    "cook_time_min": "15",
+    "serving_size": "2 pieces (80 g)"
+  },
+  "shankarpali": {
+    "display_name": "Shankarpali",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 397,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Sugar, ghee, maida flour, semolina",
+    "prep_time_min": "10",
+    "cook_time_min": "35",
+    "serving_size": "1 serving (100 g)"
+  },
+  "shrikhand": {
+    "display_name": "Shrikhand",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 364,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Curd, sugar, saffron, cardamom",
+    "prep_time_min": "10",
+    "cook_time_min": "720",
+    "serving_size": "1 serving (100 g)"
+  },
+  "sutar_feni": {
+    "display_name": "Sutar feni",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 376,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "sweet",
+    "ingredients": "Maida, sugar, ghee",
+    "prep_time_min": "15",
+    "cook_time_min": "55",
+    "serving_size": "1 serving (100 g)"
+  },
+  "maach_jhol": {
+    "display_name": "Maach Jhol",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 396,
+    "diet": "non vegetarian",
+    "course": "main course",
+    "region": "North East",
+    "state": "Assam",
+    "flavor_profile": "spicy",
+    "ingredients": "Fish, potol, tomato, chillies, ginger, garlic",
+    "prep_time_min": "10",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "chak_hao_kheer": {
+    "display_name": "Chak Hao Kheer",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 358,
+    "diet": "vegetarian",
+    "course": "dessert",
+    "region": "North East",
+    "state": "Manipur",
+    "flavor_profile": "sweet",
+    "ingredients": "Rice, milk, sugar, cardamom",
+    "prep_time_min": "240",
+    "cook_time_min": "45",
+    "serving_size": "1 serving (100 g)"
+  },
+  "aloo_gobi": {
+    "display_name": "Aloo gobi",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 392,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Cauliflower, potato, garam masala, turmeric, curry leaves",
+    "prep_time_min": "10",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (250 g)"
+  },
+  "aloo_tikki": {
+    "display_name": "Aloo tikki",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 404,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Rice flour, potato, bread crumbs, garam masala, salt",
+    "prep_time_min": "5",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (250 g)"
+  },
+  "aloo_matar": {
+    "display_name": "Aloo matar",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 381,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Potato, peas, chillies, ginger, garam masala, garlic",
+    "prep_time_min": "5",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "aloo_methi": {
+    "display_name": "Aloo methi",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 432,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "bitter",
+    "ingredients": "Potato, fenugreek leaves, chillies, salt, oil",
+    "prep_time_min": "10",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "aloo_shimla_mirch": {
+    "display_name": "Aloo shimla mirch",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 421,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Potato, shimla mirch, garam masala, amchur powder, salt",
+    "prep_time_min": "10",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "bhatura": {
+    "display_name": "Bhatura",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 373,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Chole, rava, yogurt, plain flour, baking soda",
+    "prep_time_min": "20",
+    "cook_time_min": "20",
+    "serving_size": "1 serving (250 g)"
+  },
+  "bhindi_masala": {
+    "display_name": "Bhindi masala",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 413,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Ladies finger, garam masala, kasuri methi, tomatoes, chili powder",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "biryani": {
+    "display_name": "Biryani",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 396,
+    "diet": "non vegetarian",
+    "course": "main course",
+    "region": "South",
+    "state": "Telangana",
+    "flavor_profile": "spicy",
+    "ingredients": "Chicken thighs, basmati rice, star anise, sweet, green chillies",
+    "prep_time_min": "30",
+    "cook_time_min": "120",
+    "serving_size": "1 plate (300 g)"
+  },
+  "butter_chicken": {
+    "display_name": "Butter chicken",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 502,
+    "diet": "non vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "NCT of Delhi",
+    "flavor_profile": "spicy",
+    "ingredients": "Chicken, greek yogurt, cream, garam masala powder, cashew nuts, butter",
+    "prep_time_min": "10",
+    "cook_time_min": "35",
+    "serving_size": "1 serving (250 g)"
+  },
+  "chana_masala": {
+    "display_name": "Chana masala",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 455,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Chickpeas, tomato paste, garam masala, ginger, red onion, avocado oil",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "chapati": {
+    "display_name": "Chapati",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 430,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "-1",
+    "ingredients": "Whole wheat flour, olive oil, hot water, all purpose flour",
+    "prep_time_min": "10",
+    "cook_time_min": "10",
+    "serving_size": "1 piece (40 g)"
+  },
+  "chicken_razala": {
+    "display_name": "Chicken razala",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 408,
+    "diet": "non vegetarian",
+    "course": "main course",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "spicy",
+    "ingredients": "Chicken, dahi, sesame seeds, garam masala powder, cashew nuts, saffron",
+    "prep_time_min": "10",
+    "cook_time_min": "35",
+    "serving_size": "1 serving (250 g)"
+  },
+  "chicken_tikka_masala": {
+    "display_name": "Chicken Tikka masala",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 407,
+    "diet": "non vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Naan bread, tomato sauce, skinless chicken breasts, heavy cream, garam masala",
+    "prep_time_min": "10",
+    "cook_time_min": "50",
+    "serving_size": "1 serving (250 g)"
+  },
+  "chicken_tikka": {
+    "display_name": "Chicken Tikka",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 309,
+    "diet": "non vegetarian",
+    "course": "starter",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Chicken, whole wheat bread, rice flour, garam masala powder, whole egg",
+    "prep_time_min": "120",
+    "cook_time_min": "45",
+    "serving_size": "1 serving (150 g)"
+  },
+  "daal_baati_churma": {
+    "display_name": "Daal baati churma",
+    "allergens": {
+      "nuts": true,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 400,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "West",
+    "state": "Rajasthan",
+    "flavor_profile": "spicy",
+    "ingredients": "Moong dal, masoor dal, chana dal, wheat flour, almond",
+    "prep_time_min": "10",
+    "cook_time_min": "90",
+    "serving_size": "1 serving (250 g)"
+  },
+  "daal_puri": {
+    "display_name": "Daal puri",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 431,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "East",
+    "state": "West Bengal",
+    "flavor_profile": "spicy",
+    "ingredients": "Moong dal, garam masala powder, garlic, green chilli, all purpose flour",
+    "prep_time_min": "30",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "dal_makhani": {
+    "display_name": "Dal makhani",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 427,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "sweet",
+    "ingredients": "Red kidney beans, urad dal, cream, garam masala, chili powder",
+    "prep_time_min": "10",
+    "cook_time_min": "60",
+    "serving_size": "1 bowl (200 g)"
+  },
+  "dal_tadka": {
+    "display_name": "Dal tadka",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 426,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Pigeon peas, garam masala, ginger, red onion, kasuri methi",
+    "prep_time_min": "10",
+    "cook_time_min": "30",
+    "serving_size": "1 bowl (200 g)"
+  },
+  "dum_aloo": {
+    "display_name": "Dum aloo",
+    "allergens": {
+      "nuts": true,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 394,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Jammu & Kashmir",
+    "flavor_profile": "spicy",
+    "ingredients": "Baby potatoes, garam masala, cashew nuts, kasuri methi, tomatoes",
+    "prep_time_min": "20",
+    "cook_time_min": "50",
+    "serving_size": "1 serving (250 g)"
+  },
+  "poha": {
+    "display_name": "Poha",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 249,
+    "diet": "vegetarian",
+    "course": "snack",
+    "region": "West",
+    "state": "Maharashtra",
+    "flavor_profile": "spicy",
+    "ingredients": "Beaten rice flakes, potato, curry leaves, green chilies, lemon juice",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 plate (200 g)"
+  },
+  "kachori": {
+    "display_name": "Kachori",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 235,
+    "diet": "vegetarian",
+    "course": "snack",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "spicy",
+    "ingredients": "Moong dal, rava, garam masala, dough, fennel seeds",
+    "prep_time_min": "30",
+    "cook_time_min": "60",
+    "serving_size": "2 pieces (100 g)"
+  },
+  "kadai_paneer": {
+    "display_name": "Kadai paneer",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 449,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Cottage cheese, bell peppers, gravy, garam masala, cashew nuts",
+    "prep_time_min": "20",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "kadhi_pakoda": {
+    "display_name": "Kadhi pakoda",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 415,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Haryana",
+    "flavor_profile": "spicy",
+    "ingredients": "Besan, garam masala powder, gram flour, ginger, curry leaves",
+    "prep_time_min": "10",
+    "cook_time_min": "60",
+    "serving_size": "1 bowl (200 g)"
+  },
+  "karela_bharta": {
+    "display_name": "Karela bharta",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 388,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "bitter",
+    "ingredients": "Bitter gourd, fennel, garam masala powder, chili powder, amchur powder",
+    "prep_time_min": "20",
+    "cook_time_min": "50",
+    "serving_size": "1 serving (250 g)"
+  },
+  "kofta": {
+    "display_name": "Kofta",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 455,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "spicy",
+    "ingredients": "Paneer, potato, cream, corn flour, garam masala",
+    "prep_time_min": "20",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "litti_chokha": {
+    "display_name": "Litti chokha",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 417,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Bihar",
+    "flavor_profile": "spicy",
+    "ingredients": "Wheat flour, roasted gram flour, tomato, nigella seeds, chilli",
+    "prep_time_min": "45",
+    "cook_time_min": "60",
+    "serving_size": "2 pieces (200 g)"
+  },
+  "makki_di_roti_sarson_da_saag": {
+    "display_name": "Makki di roti sarson da saag",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 375,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Palak, makki atta, mustard green, garam masala, ginger",
+    "prep_time_min": "25",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "misi_roti": {
+    "display_name": "Misi roti",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": true
+    },
+    "approx_calories_kcal": 380,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Whole wheat flour, chickpea flour, green chilies",
+    "prep_time_min": "30",
+    "cook_time_min": "30",
+    "serving_size": "1 serving (250 g)"
+  },
+  "naan": {
+    "display_name": "Naan",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": true
+    },
+    "approx_calories_kcal": 415,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "-1",
+    "ingredients": "Whole wheat flour, honey, butter, garlic",
+    "prep_time_min": "60",
+    "cook_time_min": "30",
+    "serving_size": "1 piece (80 g)"
+  },
+  "navrattan_korma": {
+    "display_name": "Navrattan korma",
+    "allergens": {
+      "nuts": false,
+      "dairy": false,
+      "gluten": false
+    },
+    "approx_calories_kcal": 386,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Uttar Pradesh",
+    "flavor_profile": "spicy",
+    "ingredients": "Green beans, potatoes, khus khus, low fat, garam masala powder",
+    "prep_time_min": "25",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "palak_paneer": {
+    "display_name": "Palak paneer",
+    "allergens": {
+      "nuts": false,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 472,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Cottage cheese, palak, cream, garam masala, butter",
+    "prep_time_min": "20",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  },
+  "paneer_butter_masala": {
+    "display_name": "Paneer butter masala",
+    "allergens": {
+      "nuts": true,
+      "dairy": true,
+      "gluten": false
+    },
+    "approx_calories_kcal": 506,
+    "diet": "vegetarian",
+    "course": "main course",
+    "region": "North",
+    "state": "Punjab",
+    "flavor_profile": "spicy",
+    "ingredients": "Paneer, whipping cream, garam masala, cashew nuts, butter",
+    "prep_time_min": "20",
+    "cook_time_min": "40",
+    "serving_size": "1 serving (250 g)"
+  }
+}
