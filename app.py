@@ -291,7 +291,7 @@ div[data-testid="stFileUploader"] {
 }
 div[data-testid="stFileUploader"] * { color: var(--text3) !important; }
 .stRadio > div { background: transparent !important; }
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
 .block-container { padding-top: 0.5rem !important; max-width: 1200px; }
 details { background: var(--card) !important; border: 1px solid var(--border) !important; border-radius: 8px !important; }
 .streamlit-expanderHeader { color: var(--text2) !important; }
