@@ -555,10 +555,14 @@ def main():
         return
 
     # -- Predict ---------------------------------------------------------------
-    with st.spinner("Analysing..."):
+    with st.status("🔍 Analyzing dish...", expanded=True) as status:
+        st.write("Extracting visual features...")
         results = predict(
             image, bundle, device, idx_to_class, dish_to_region, nutrition, df
         )
+        st.write("Matching nutrition and allergen data...")
+        status.update(label="✅ Analysis complete!", state="complete", expanded=False)
+        
     top = results[0]
 
     # -- Two-column layout -----------------------------------------------------
