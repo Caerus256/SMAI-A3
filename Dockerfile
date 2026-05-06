@@ -7,6 +7,7 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements file
@@ -24,6 +25,9 @@ RUN mkdir -p model
 
 # Expose port 8501 for Streamlit
 EXPOSE 8501
+
+# Health check
+HEALTHCHECK CMD curl -f http://localhost:8501/_stcore/health || exit 1
 
 # Run Streamlit app
 CMD ["python", "-m", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
