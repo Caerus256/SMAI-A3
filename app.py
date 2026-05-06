@@ -312,18 +312,13 @@ def ensure_model(filename):
     local_path = MODEL_DIR / filename
     if not local_path.exists():
         try:
-            st.toast(f"Downloading {filename} from Hugging Face...", icon="⬇️")
             downloaded_path = hf_hub_download(
                 repo_id=HF_REPO_ID,
                 filename=filename,
                 repo_type="model",
-                local_dir=MODEL_DIR,
-                local_dir_use_symlinks=False
+                local_dir=MODEL_DIR
             )
-            st.toast(f"Downloaded {filename}", icon="✅")
         except Exception as e:
-            st.error(f"Failed to download {filename} from Hugging Face: {str(e)}")
-            st.info("Models are not available. Please run training.ipynb locally to generate model files.")
             return None
     return local_path
 
@@ -482,7 +477,7 @@ def render_sidebar(df):
                 st.markdown(f'<div class="{btn_cls}">', unsafe_allow_html=True)
                 clicked = st.button(
                     btn_label, key=f"sel_{m['type']}",
-                    use_container_width=True,
+                    width='stretch',
                     disabled=is_active,
                 )
                 st.markdown('</div>', unsafe_allow_html=True)
@@ -529,7 +524,7 @@ def render_sidebar(df):
                 
                 with cols[i % 2]:
                     st.markdown(f'<div class="{btn_class}">', unsafe_allow_html=True)
-                    if st.button(name[:12], key=f"s_{dish}", use_container_width=True):
+                    if st.button(name[:12], key=f"s_{dish}", width='stretch'):
                         st.session_state["sample_image"] = str(dish_dir / imgs[0])
                         st.session_state["sample_dish_name"] = dish
                         st.rerun()
@@ -548,7 +543,8 @@ def main():
 
     bundle, device = get_model(model_type)
     if bundle is None:
-        st.error("Model weights not found.")
+        st.error("Model weights not found. Please run training.ipynb locally to generate model files.")
+        st.info("Models are not available on Hugging Face. You need to train the models locally first.")
         st.stop()
 
     # Header
@@ -606,7 +602,7 @@ def main():
     col_left, col_right = st.columns([1, 1.2], gap="large")
 
     with col_left:
-        st.image(image, use_container_width=True, output_format="JPEG")
+        st.image(image, width='stretch', output_format="JPEG")
         
         # Move ingredients to left column under the image for better balance
         with st.expander("📝 View Full Ingredients", expanded=False):
