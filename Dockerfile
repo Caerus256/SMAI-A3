@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install --no-cache-dir streamlit
 
 # Copy application code
 COPY . .
