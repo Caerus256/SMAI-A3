@@ -84,121 +84,109 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# -- CSS — premium dark palette with glassmorphism -------------------------------
+# -- CSS — muted dark palette --------------------------------------------------
 CUSTOM_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 :root {
     --bg:     #0f0f0f;
-    --card:   rgba(22, 22, 24, 0.75); /* Glassmorphism base */
-    --border: rgba(255, 255, 255, 0.08);
-    --text1:  #e0e0e0;
-    --text2:  #88888e;
-    --text3:  #606068;
+    --card:   #161618;
+    --border: #232328;
+    --text1:  #d0d0d0;
+    --text2:  #78787e;
+    --text3:  #505058;
     --accent: #b8956a;
 }
 
-.stApp { background-color: var(--bg) !important; font-family: 'Inter', sans-serif !important; }
+.stApp { background-color: var(--bg) !important; }
 
 section[data-testid="stSidebar"] {
-    background-color: rgba(18, 18, 20, 0.95) !important;
-    backdrop-filter: blur(10px);
+    background-color: #121214 !important;
     border-right: 1px solid var(--border) !important;
 }
 
-h1,h2,h3,h4,h5,h6 { color: var(--text1) !important; font-family: 'Inter', sans-serif !important; letter-spacing: -0.02em; }
-p,span,div,label,li { color: var(--text1) !important; font-family: 'Inter', sans-serif !important; }
+h1,h2,h3,h4,h5,h6 { color: var(--text1) !important; }
+p,span,div,label,li { color: var(--text1) !important; }
 
 .section-label {
     color: var(--text3) !important;
     font-size: 0.65rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     margin: 1.4rem 0 0.5rem;
 }
 
 .app-header {
     text-align: center;
-    padding: 1.2rem 0 1.5rem;
+    padding: 0.8rem 0 1.2rem;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .app-title {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 1.7rem;
+    font-weight: 700;
     color: var(--text1) !important;
-    margin: 0 0 0.3rem;
-    letter-spacing: -0.02em;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
 }
 .app-title-accent { color: var(--accent) !important; }
 .app-sub {
     color: var(--text2) !important;
-    font-size: 0.85rem;
-    font-weight: 400;
+    font-size: 0.82rem;
     margin: 0;
 }
 
 .card {
     background: var(--card);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.4rem 1.6rem;
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
     margin: 0.4rem 0;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
 }
 
 .model-row {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    padding: 0.7rem 0.9rem;
-    border-radius: 10px;
-    margin: 0.3rem 0;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    margin: 0.2rem 0;
     border: 1px solid transparent;
-    transition: all 0.2s ease;
-    cursor: default;
+    transition: all 0.15s ease;
 }
-.model-row:hover { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.05); }
+.model-row:hover { background: #1c1c20; }
 .model-row.active {
-    background: rgba(184, 149, 106, 0.08);
-    border-color: rgba(184, 149, 106, 0.2);
+    background: #1a1914;
+    border-color: #3a352a;
 }
 .model-rank {
     font-size: 0.65rem;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text3) !important;
-    min-width: 24px;
+    min-width: 22px;
     text-align: center;
-    padding: 0.2rem 0;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 0.15rem 0;
+    border-radius: 4px;
+    background: #1e1e22;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 .model-row.active .model-rank {
     color: var(--accent) !important;
-    background: rgba(184, 149, 106, 0.15);
+    background: #252018;
 }
 .model-name {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--text1) !important;
 }
 .model-detail {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text3) !important;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 .model-acc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--text2) !important;
     min-width: 46px;
@@ -206,67 +194,58 @@ p,span,div,label,li { color: var(--text1) !important; font-family: 'Inter', sans
 }
 .model-row.active .model-acc { color: var(--accent) !important; }
 .model-bar-bg {
-    height: 4px;
-    background: rgba(255, 255, 255, 0.05);
+    height: 3px;
+    background: #1e1e22;
     border-radius: 2px;
-    margin-top: 0.4rem;
-    overflow: hidden;
+    margin-top: 0.35rem;
 }
 .model-bar {
-    height: 100%;
+    height: 3px;
     border-radius: 2px;
     background: var(--text3);
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width 0.3s ease;
 }
 .model-row.active .model-bar { background: var(--accent); }
-.model-unavail { opacity: 0.3; pointer-events: none; filter: grayscale(1); }
+.model-unavail { opacity: 0.3; pointer-events: none; }
 
 .region-badge {
     display: inline-block;
-    padding: 0.4rem 1rem;
-    border-radius: 8px;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
     font-weight: 600;
-    font-size: 0.85rem;
-    margin: 0.3rem 0;
-    backdrop-filter: blur(4px);
+    font-size: 0.8rem;
+    margin: 0.25rem 0;
 }
 
 .conf-bg {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-    height: 8px;
-    overflow: hidden;
+    background: #1e1e22;
+    border-radius: 4px;
+    height: 6px;
 }
 .conf-fill {
-    height: 100%;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #8a7a6a, var(--accent));
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 6px;
+    border-radius: 4px;
+    background: #8a7a6a;
 }
 
 .cal-card {
-    background: var(--card);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem;
+    background: #1a1816;
+    border: 1px solid #2a2620;
+    border-radius: 10px;
+    padding: 1rem;
     text-align: center;
     margin: 0.4rem 0;
-    transition: transform 0.2s ease;
 }
-.cal-card:hover { transform: translateY(-2px); }
 .cal-num {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--accent) !important;
     line-height: 1.1;
-    letter-spacing: -0.02em;
 }
 .cal-sub {
     color: var(--text3) !important;
-    font-size: 0.75rem;
-    font-weight: 500;
-    margin-top: 0.25rem;
+    font-size: 0.72rem;
+    margin-top: 0.15rem;
 }
 
 .allergen-badge {
@@ -576,14 +555,10 @@ def main():
         return
 
     # -- Predict ---------------------------------------------------------------
-    with st.status("🔍 Analyzing dish...", expanded=True) as status:
-        st.write("Extracting visual features...")
+    with st.spinner("Analysing..."):
         results = predict(
             image, bundle, device, idx_to_class, dish_to_region, nutrition, df
         )
-        st.write("Matching nutrition and allergen data...")
-        status.update(label="✅ Analysis complete!", state="complete", expanded=False)
-        
     top = results[0]
 
     # -- Two-column layout -----------------------------------------------------
