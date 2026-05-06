@@ -49,24 +49,21 @@ MODEL_REGISTRY = [
         "label": "CLIP Linear Probe",
         "detail": "ViT-B/32 + Logistic Regression",
         "dish_acc": 74.8, "top3_acc": 89.7, "region_acc": 84.0,
-        "available": lambda: _OPEN_CLIP_AVAILABLE and (MODEL_DIR / "clip_linear_probe.pkl").exists(),
+        "available": lambda: _OPEN_CLIP_AVAILABLE,
     },
     {
         "type": "vit",   "rank": 2,
         "label": "ViT-B/16 Fine-tuned",
         "detail": "Last-2-blocks, 10 epochs",
         "dish_acc": 69.5, "top3_acc": 85.8, "region_acc": 82.2,
-        "available": lambda: (MODEL_DIR / "vit_b16_best.pth").exists(),
+        "available": lambda: True,
     },
     {
         "type": "efficientnet", "rank": 3,
         "label": "EfficientNet-B0",
         "detail": "Last-block, 10 epochs",
         "dish_acc": 49.0, "top3_acc": 70.3, "region_acc": 69.3,
-        "available": lambda: any(
-            (MODEL_DIR / f).exists()
-            for f in ["efficientnet_b0_best.pth", "efficientnet_b0_head_only.pth"]
-        ),
+        "available": lambda: True,
     },
 ]
 
@@ -311,6 +308,7 @@ st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 # Download model from Hugging Face if not present
 def ensure_model(filename):
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
     local_path = MODEL_DIR / filename
     if not local_path.exists():
         try:
