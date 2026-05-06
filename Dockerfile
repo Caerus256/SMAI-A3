@@ -21,8 +21,8 @@ COPY . .
 # Create model directory
 RUN mkdir -p model
 
-# Expose port 7860 for Gradio
-EXPOSE 7860
+# Expose port 8501 for Streamlit
+EXPOSE 8501
 
-# Run Gradio app
-CMD ["python", "app_gradio.py"]
+# Run Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
