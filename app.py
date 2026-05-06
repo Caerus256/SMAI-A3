@@ -1,5 +1,3 @@
-# Regional Thali Identifier — Streamlit App
-
 import streamlit as st
 import torch
 import timm
@@ -19,7 +17,7 @@ try:
 except ImportError:
     _OPEN_CLIP_AVAILABLE = False
 
-# -- Paths & constants --------------------------------------------------------
+#  Paths & constants 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR    = PROJECT_DIR / "data"
 MODEL_DIR   = PROJECT_DIR / "model"
@@ -91,7 +89,7 @@ def ensure_model(filename):
             return None
     return local_path
 
-# -- Page config ---------------------------------------------------------------
+#  Page config
 st.set_page_config(
     page_title="Regional Thali Identifier",
     page_icon="🍛",
@@ -99,7 +97,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# -- CSS — muted dark palette --------------------------------------------------
+#  CSS — muted dark palette 
 CUSTOM_CSS = """
 <style>
 :root {
@@ -153,7 +151,7 @@ p,span,div,label,li { color: var(--text1) !important; }
 
 .card {
     background: var(--card);
-    border: 1px solid var(--border);
+    --border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.2rem 1.4rem;
     margin: 0.4rem 0;
@@ -166,7 +164,7 @@ p,span,div,label,li { color: var(--text1) !important; }
     padding: 0.65rem 0.8rem;
     border-radius: 8px;
     margin: 0.2rem 0;
-    border: 1px solid transparent;
+    --border: 1px solid transparent;
     transition: all 0.15s ease;
 }
 .model-row:hover { background: #1c1c20; }
@@ -245,7 +243,7 @@ p,span,div,label,li { color: var(--text1) !important; }
 
 .cal-card {
     background: #1a1816;
-    border: 1px solid #2a2620;
+    --border: 1px solid #2a2620;
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
@@ -283,14 +281,14 @@ p,span,div,label,li { color: var(--text1) !important; }
     margin: 0.12rem;
     background: #1a1a1e;
     color: var(--text2) !important;
-    border: 1px solid var(--border);
+    --border: 1px solid var(--border);
 }
 .pill-veg  { background:#162016; color:#7aaa7a !important; border-color:#2a382a; }
 .pill-nveg { background:#201616; color:#aa7a7a !important; border-color:#382a2a; }
 
 .welcome {
     background: var(--card);
-    border: 1px dashed var(--border);
+    --border: 1px dashed var(--border);
     border-radius: 14px;
     padding: 2.5rem 2rem;
     text-align: center;
@@ -301,7 +299,7 @@ p,span,div,label,li { color: var(--text1) !important; }
 
 div[data-testid="stFileUploader"] {
     background: var(--card) !important;
-    border: 1px dashed #303038 !important;
+    --border: 1px dashed #303038 !important;
     border-radius: 10px !important;
 }
 div[data-testid="stFileUploader"] * { color: var(--text3) !important; }
@@ -315,7 +313,7 @@ details { background: var(--card) !important; border: 1px solid var(--border) !i
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 
-# -- Cached model loaders -----------------------------------------------------
+#  Cached model loaders 
 @st.cache_resource
 def _load_clip():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -364,7 +362,7 @@ def get_model(model_type):
     return _load_efficientnet()
 
 
-# -- Metadata ------------------------------------------------------------------
+#  Metadata 
 @st.cache_data
 def load_metadata():
     df = pd.read_csv(DATA_DIR / "food_metadata_80.csv")
@@ -376,7 +374,7 @@ def load_metadata():
     return df, nutrition, idx_to_class, dish_to_region
 
 
-# -- Prediction ----------------------------------------------------------------
+#  Prediction 
 def _build_result(idx, prob, idx_to_class, dish_to_region, nutrition, df):
     folder = idx_to_class[int(idx)]
     info = nutrition.get(folder, {})
@@ -420,7 +418,7 @@ def predict(image, bundle, device, idx_to_class, dish_to_region, nutrition, df, 
                 for p, i in zip(top_p, top_i)]
 
 
-# -- Sidebar -------------------------------------------------------------------
+#  Sidebar 
 def _model_row_html(m, is_active):
     cls = "model-row active" if is_active else "model-row"
     if not m["available"]():
@@ -454,7 +452,7 @@ def render_sidebar(df):
         unsafe_allow_html=True,
     )
 
-    # -- Unified model picker --------------------------------------------------
+    #  Unified model picker 
     st.sidebar.markdown(
         '<p class="section-label">Model</p>', unsafe_allow_html=True
     )
@@ -500,7 +498,7 @@ def render_sidebar(df):
         unsafe_allow_html=True,
     )
 
-    # -- Sample gallery --------------------------------------------------------
+    #  Sample gallery 
     st.sidebar.markdown(
         '<p class="section-label" style="margin-top:1.6rem;">Try a sample</p>',
         unsafe_allow_html=True,
@@ -524,7 +522,7 @@ def render_sidebar(df):
     return chosen["type"]
 
 
-# -- Main ----------------------------------------------------------------------
+#  Main 
 def main():
     df, nutrition, idx_to_class, dish_to_region = load_metadata()
 
@@ -537,7 +535,7 @@ def main():
         st.error("Model weights not found.")
         st.stop()
 
-    # -- Header ----------------------------------------------------------------
+    #  Header 
     st.markdown(
         '<div class="app-header">'
         '  <p class="app-title">'
@@ -550,7 +548,7 @@ def main():
         unsafe_allow_html=True,
     )
 
-    # -- Upload ----------------------------------------------------------------
+    #  Upload 
     uploaded = st.file_uploader(
         "Drop a food photo",
         type=["jpg", "jpeg", "png"],
@@ -575,14 +573,14 @@ def main():
         )
         return
 
-    # -- Predict ---------------------------------------------------------------
+    #  Predict 
     with st.spinner("Analysing..."):
         results = predict(
             image, bundle, device, idx_to_class, dish_to_region, nutrition, df
         )
     top = results[0]
 
-    # -- Two-column layout -----------------------------------------------------
+    #  Two-column layout 
     col_left, col_right = st.columns([1, 1.5], gap="large")
 
     with col_left:
@@ -617,7 +615,7 @@ def main():
             unsafe_allow_html=True,
         )
 
-        # -- Info grid: Calories + Diet + Allergens ----------------------------
+        #  Info grid: Calories + Diet + Allergens -
         c1, c2 = st.columns(2)
 
         with c1:
@@ -673,7 +671,7 @@ def main():
                 unsafe_allow_html=True,
             )
 
-        # -- Other candidates --------------------------------------------------
+        #  Other candidates 
         if len(results) > 1:
             st.markdown(
                 '<p class="section-label" style="margin-top:1rem;">Other candidates</p>',
@@ -698,7 +696,7 @@ def main():
                     unsafe_allow_html=True,
                 )
 
-        # -- Ingredients expander ----------------------------------------------
+        #  Ingredients expander -
         with st.expander("Ingredients", expanded=False):
             st.markdown(
                 f'<p style="font-size:0.85rem; color:#909090 !important;'
