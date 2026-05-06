@@ -4,7 +4,7 @@
 
 Indian food image classifier (80 classes). Upload a photo of a dish and the app predicts the dish name, maps it to a region (North / South / East / West / North East), estimates calories, and flags common allergens (nuts, dairy, gluten).
 
-**Live Demo:** https://smai-a3-jmhqgx2jwpsq2bb6ypwqpa.streamlit.app/
+**Live Demo:** https://smai-a3-bvhfhatdvndn8lsnjptcnd.streamlit.app/
 
 **GitHub Repository:** https://github.com/Caerus256/SMAI-A3
 
