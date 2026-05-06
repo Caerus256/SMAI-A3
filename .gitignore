@@ -1,0 +1,13 @@
+# Ignore datasets
+data/
+datasets/
+images/
+
+# Ignore model weights
+*.pt
+*.pth
+*.h5
+*.pkl
+
+# Ignore virtual environments
+venv/
